@@ -13,6 +13,9 @@
 #include <time.h>
 #include <limits.h>
 #include <stdint.h>
+#include "defence.h"
+
+
 
 int main(int argc, char** argv) {
 
@@ -42,7 +45,31 @@ int main(int argc, char** argv) {
 		} else if (dice_type[0] == '0') {
 			printf("Nope\n");
 			continue;
+		} else if (dice_type[0] == 'c' || dice_type[0] == 'C') {
+			char* color = malloc(sizeof(char) * 7);
+			c_wuerfel colored_dices[4];
+			unsigned int menge = 0;
+			printf("Mögliche Farben: Rosa, Gruen, Schwarz und Weiß\n");
+			printf("Bitte immer nur die Anfangsbuchstaben eingeben\n");
+			printf("Farbe: ");
+			scanf("%9s", color);
+
+			int i = 0;
+			while (color[i] != '\0') {
+				printf("Wie viele Wuerfel?:");
+				scanf("%ui", &menge);
+				colored_dices[i] = create_colored_dice(&color[i], menge);
+				i++;
+			}
+
+
+
+
+
 		}
+
+
+
 		//FIXME you can input normal characters
 
 		dice_type_l = strtol(dice_type, NULL, 10);
