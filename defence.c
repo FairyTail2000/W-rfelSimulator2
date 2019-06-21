@@ -8,24 +8,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include "defence.h"
 
 #define ARR_SIZE(arr) ( sizeof((arr)) / sizeof((arr[0])) )
-
-
-typedef struct c_wuerfel {
-	struct {
-		unsigned int rosa[6];
-		unsigned int gruen[6];
-		unsigned int weis[6];
-		unsigned int schwarz[6];
-	} colors;
-	unsigned int result;
-	unsigned int color[6];
-	unsigned int count;
-	char color_c;
-
-} c_wuerfel;
-
 
 void roll_colored_dice (c_wuerfel* w) {
 	srand(time(NULL));
@@ -63,11 +48,11 @@ c_wuerfel* create_colored_dice (const char* color, int amount) {
 	act->colors.weis[5] = 3;
 
 	act->colors.schwarz[0] = 0;
-	act->colors.schwarz[0] = 1;
-	act->colors.schwarz[0] = 2;
-	act->colors.schwarz[0] = 2;
-	act->colors.schwarz[0] = 3;
-	act->colors.schwarz[0] = 4;
+	act->colors.schwarz[1] = 1;
+	act->colors.schwarz[2] = 2;
+	act->colors.schwarz[3] = 2;
+	act->colors.schwarz[4] = 3;
+	act->colors.schwarz[5] = 4;
 
 	act->count = amount;
 	if (color[0] == 'r' || color[0] == 'R') {
@@ -107,19 +92,19 @@ c_wuerfel* create_colored_dice (const char* color, int amount) {
 void print_result (c_wuerfel* w) {
 	switch (w->color_c) {
 		case 'r':
-			printf("Rosa Wuerfel: %ui", w->result);
+			printf("Rosa Wuerfel: %u\n", w->result);
 			break;
 		case 'g':
-			printf("Gruener Wuerfel: %ui", w->result);
+			printf("Gruener Wuerfel: %u\n", w->result);
 			break;
 		case 'w':
-			printf("Weißer Wuerfel: %ui", w->result);
+			printf("Weißer Wuerfel: %u\n", w->result);
 			break;
 		case 's':
-			printf("Schwarzer Wuerfel: %ui", w->result);
+			printf("Schwarzer Wuerfel: %u\n", w->result);
 			break;
 		default:
-			printf("How did I got to this point? %c", w->color_c);
+			printf("How did I got to this point? %c\n", w->color_c);
 			break;
 	}
 }

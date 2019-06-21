@@ -28,9 +28,7 @@ int main(int argc, char** argv) {
 	unsigned int result;
 
 	printf("Willkommen zum Wuerfeln!\n");
-
 	while (1) {
-
 		result = 0;
 		printf(">");
 		srand(time(NULL));
@@ -56,18 +54,28 @@ int main(int argc, char** argv) {
 
 			int i = 0;
 			while (color[i] != '\0') {
-				printf("Wie viele Wuerfel?:");
-				scanf("%ui", &menge);
+
+				if (color[i] == 's' || color[i] == 'S') {
+					printf("Wie viele schwarze Wuerfel:");
+				} else if (color[i] == 'w' || color[i] == 'W') {
+					printf("Wie viele weiße Wuerfel:");
+				} else if (color[i] == 'g' || color[i] == 'G') {
+					printf("Wie viele gruene Wuerfel:");
+				} else if (color[i] == 'r' || color[i] == 'R') {
+					printf("Wie viele rose Wuerfel:");
+				}
+
+				scanf("%u", &menge);
 				colored_dices[i] = create_colored_dice(&color[i], menge);
 				i++;
 			}
-
+			printf("\n----------------------------------\n\n");
 			for (int ii = 0; ii < i; ii++ ) {
 				roll_colored_dice(colored_dices[ii]);
 				print_result(colored_dices[ii]);
 			}
 
-
+			continue;
 
 		}
 
