@@ -12,7 +12,7 @@
 #define ARR_SIZE(arr) ( sizeof((arr)) / sizeof((arr[0])) )
 
 
-typedef struct color_wuerfel {
+typedef struct c_wuerfel {
 	struct {
 		unsigned int rosa[6];
 		unsigned int gruen[6];

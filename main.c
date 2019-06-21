@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 			continue;
 		} else if (dice_type[0] == 'c' || dice_type[0] == 'C') {
 			char* color = malloc(sizeof(char) * 7);
-			c_wuerfel colored_dices[4];
+			c_wuerfel *colored_dices[4];
 			unsigned int menge = 0;
 			printf("Mögliche Farben: Rosa, Gruen, Schwarz und Weiß\n");
 			printf("Bitte immer nur die Anfangsbuchstaben eingeben\n");
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 				i++;
 			}
 
-
+			colored_dices[0]->count;
 
 
 

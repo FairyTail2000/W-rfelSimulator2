@@ -9,7 +9,7 @@
 #define DEFENCE_H_
 
 
-typedef struct color_wuerfel c_wuerfel;
+typedef struct c_wuerfel c_wuerfel;
 void roll_colored_dice(c_wuerfel* w);
 c_wuerfel* create_colored_dice (const char* color, int amount);
 
