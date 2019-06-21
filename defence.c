@@ -8,9 +8,31 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-#include "defence.h"
 
 #define ARR_SIZE(arr) ( sizeof((arr)) / sizeof((arr[0])) )
+#define ss (unsigned char) 225
+#define AE (unsigned char) 142
+#define ae (unsigned char) 132
+#define OE (unsigned char) 153
+#define oe (unsigned char) 148
+#define UE (unsigned char) 154
+#define ue (unsigned char) 129
+
+
+typedef struct c_wuerfel {
+	struct colors {
+		unsigned int rosa[6];
+		unsigned int gruen[6];
+		unsigned int weis[6];
+		unsigned int schwarz[6];
+	} colors;
+	unsigned int result;
+	unsigned int color[6];
+	unsigned int count;
+	char color_c;
+} c_wuerfel;
+
+
 
 void roll_colored_dice (c_wuerfel* w) {
 	srand(time(NULL));
@@ -79,8 +101,14 @@ c_wuerfel* create_colored_dice (const char* color, int amount) {
 
 		act->color_c = 's';
 	} else {
-		printf("Unbekannte Wuerfelfarbe %s\n", color);
-		printf("Rosa wurde automatisch ausgewählt");
+		#ifdef WINDOWS
+		printf("Unbekannte W%crfelfarbe %s\n", ue,  color);
+				printf("Rosa wurde automatisch ausgew%chlt", ae);
+		#else
+				printf("Unbekannte Würfelfarbe %s\n", color);
+				printf("Rosa wurde automatisch ausgewählt");
+		#endif
+
 		for (int i = 0; i < 6; i++) {
 			act->color[i] = act->colors.rosa[i];
 		}
@@ -91,21 +119,41 @@ c_wuerfel* create_colored_dice (const char* color, int amount) {
 
 void print_result (c_wuerfel* w) {
 	switch (w->color_c) {
+
+	#ifdef WINDOWS
+
 		case 'r':
-			printf("Rosa Wuerfel: %u\n", w->result);
+			printf("Rosa W%crfel: %u\n", ue, w->result);
 			break;
 		case 'g':
-			printf("Gruener Wuerfel: %u\n", w->result);
+			printf("Gr%cner W%crfel: %u\n", ue, ue, w->result);
 			break;
 		case 'w':
-			printf("Weißer Wuerfel: %u\n", w->result);
+			printf("Wei%cer W%crfel: %u\n", ss, ue, w->result);
 			break;
 		case 's':
-			printf("Schwarzer Wuerfel: %u\n", w->result);
+			printf("Schwarzer W%crfel: %u\n", ue, w->result);
 			break;
 		default:
 			printf("How did I got to this point? %c\n", w->color_c);
 			break;
+	#else
+		case 'r':
+					printf("Rosa Würfel: %u\n", w->result);
+					break;
+				case 'g':
+					printf("Gruener Würfel: %u\n", w->result);
+					break;
+				case 'w':
+					printf("Weißer Würfel: %u\n", w->result);
+					break;
+				case 's':
+					printf("Schwarzer Würfel: %u\n", w->result);
+					break;
+				default:
+					printf("How did I got to this point? %c\n", w->color_c);
+					break;
+	#endif
 	}
 }
 

@@ -26,8 +26,15 @@ int main(int argc, char** argv) {
 	unsigned int i;
 	unsigned int act;
 	unsigned int result;
+	#ifdef WINDOWS
+		printf("Willkommen zum W%crfeln!\n", ue);
+	#else
+		printf("Willkommen zum Würfeln!\n");
+	#endif
 
-	printf("Willkommen zum Wuerfeln!\n");
+
+
+
 	while (1) {
 		result = 0;
 		printf(">");
@@ -47,7 +54,12 @@ int main(int argc, char** argv) {
 			char* color = malloc(sizeof(char) * 7);
 			c_wuerfel *colored_dices[4];
 			unsigned int menge = 0;
-			printf("Mögliche Farben: Rosa, Gruen, Schwarz und Weiß\n");
+
+		#ifdef WINDOWS
+			printf("M%cgliche Farben: Rosa, Gr%cn, Schwarz und Wei%c\n", oe, ue, ss);
+		#else
+			printf("Mögliche Farben: Rosa, Grün, Schwarz und Weiß\n");
+		#endif
 			printf("Bitte immer nur die Anfangsbuchstaben eingeben\n");
 			printf("Farbe: ");
 			scanf("%9s", color);
@@ -56,13 +68,33 @@ int main(int argc, char** argv) {
 			while (color[i] != '\0') {
 
 				if (color[i] == 's' || color[i] == 'S') {
-					printf("Wie viele schwarze Wuerfel:");
+					#ifdef WINDOWS
+					printf("Wie viele schwarze W%crfel:", ue);
+					#else
+					printf("Wie viele schwarze Würfel:");
+					#endif
+
 				} else if (color[i] == 'w' || color[i] == 'W') {
-					printf("Wie viele weiße Wuerfel:");
+				#ifdef WINDOWS
+					printf("Wie viele weiße W%crfel:", ue);
+				#else
+					printf("Wie viele weiße Würfel:");
+				#endif
+
 				} else if (color[i] == 'g' || color[i] == 'G') {
-					printf("Wie viele gruene Wuerfel:");
+				#ifdef WINDOWS
+					printf("Wie viele gr%cne W%crfel:", ue, ue);
+				#else
+					printf("Wie viele grüne Würfel:");
+				#endif
+
 				} else if (color[i] == 'r' || color[i] == 'R') {
-					printf("Wie viele rose Wuerfel:");
+				#ifdef WINDOWS
+					printf("Wie viele rose W%crfel:", ue);
+				#else
+					printf("Wie viele rose Würfel:");
+				#endif
+
 				}
 
 				scanf("%u", &menge);
@@ -115,8 +147,15 @@ int main(int argc, char** argv) {
 				dice_results[act]++;
 			}
 
-			printf("Wuerfel:\n1: %i\n2: %i\n", dice_results[1],
-					dice_results[0]);
+			#ifdef WINDOWS
+			printf("W%crfel:\n1: %i\n2: %i\n", ue, dice_results[1],
+								dice_results[0]);
+			#else
+			printf("Würfel:\n1: %i\n2: %i\n", dice_results[1],
+								dice_results[0]);
+			#endif
+
+
 			printf("Ergebnis: %i\n", dice_results[1] + dice_results[0] * 2);
 			break;
 		case 3:
@@ -125,8 +164,17 @@ int main(int argc, char** argv) {
 				act = rand() % 3;
 				dice_results[act]++;
 			}
-			printf("Wuerfel:\n1: %i\n2: %i\n3: %i\n", dice_results[1],
-					dice_results[2], dice_results[0]);
+
+			#ifdef WINDOWS
+			printf("W%crfel:\n1: %i\n2: %i\n3: %i\n", ue ,dice_results[1],
+								dice_results[2], dice_results[0]);
+			#else
+			printf("Würfel:\n1: %i\n2: %i\n3: %i\n", dice_results[1],
+								dice_results[2], dice_results[0]);
+			#endif
+
+
+
 			printf("Ergebnis: %i\n", dice_results[1] +
 					dice_results[2] * 2 + dice_results[0] * 3);
 			break;
@@ -136,9 +184,19 @@ int main(int argc, char** argv) {
 				act = rand() % 4;
 				dice_results[act]++;
 			}
-			printf("Wuerfel:\n1: %i\n2: %i\n3: %i\n4: %i\n",
-					dice_results[1], dice_results[2],
-					dice_results[3], dice_results[0]);
+
+			#ifdef WINDOWS
+			printf("W%crfel:\n1: %i\n2: %i\n3: %i\n4: %i\n", ue,
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[0]);
+			#else
+			printf("Würfel:\n1: %i\n2: %i\n3: %i\n4: %i\n",
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[0]);
+			#endif
+
+
+
 			printf("Ergebnis: %i\n", dice_results[1] + dice_results[2] * 2+
 					dice_results[3] * 3 + dice_results[0] * 4);
 			break;
@@ -148,10 +206,18 @@ int main(int argc, char** argv) {
 				dice_results[act]++;
 			}
 
-			printf("Wuerfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n",
+			#ifdef WINDOWS
+			printf("W%crfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n", ue,
 					dice_results[1], dice_results[2],
 					dice_results[3], dice_results[4],
 					dice_results[5], dice_results[0]);
+			#else
+			printf("Würfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n",
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[0]);
+			#endif
+
 			printf("Misserfolge: %i\nErfolge: %i\n", dice_results[1] + dice_results[2], dice_results[5] + dice_results[0]);
 			break;
 		case 8:
@@ -172,11 +238,20 @@ int main(int argc, char** argv) {
 				}
 			}
 
-			printf("Wuerfel:\n1: %u\n2: %u\n3: %u\n4: %u\n5: %u\n6: %u\n7: %u\n8: %u\n",
-					dice_results[1], dice_results[2],
-					dice_results[3], dice_results[4],
-					dice_results[5], dice_results[6],
-					dice_results[7], dice_results[0]);
+			#ifdef WINDOWS
+			printf("W%crfel:\n1: %u\n2: %u\n3: %u\n4: %u\n5: %u\n6: %u\n7: %u\n8: %u\n", ue,
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[6],
+								dice_results[7], dice_results[0]);
+			#else
+			printf("Würfel:\n1: %u\n2: %u\n3: %u\n4: %u\n5: %u\n6: %u\n7: %u\n8: %u\n",
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[6],
+								dice_results[7], dice_results[0]);
+			#endif
+
 			printf("Ergebnis: %i\n", result);
 			return 0;
 			break;
@@ -198,13 +273,27 @@ int main(int argc, char** argv) {
 				}
 			}
 
+
+
+
+			#ifdef WINDOWS
 			printf(
-					"Wuerfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n7: %i\n8: %i\n9: %i\n10: %i\n",
-					dice_results[1], dice_results[2],
-					dice_results[3], dice_results[4],
-					dice_results[5], dice_results[6],
-					dice_results[7], dice_results[8],
-					dice_results[9], dice_results[0]);
+								"W%crfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n7: %i\n8: %i\n9: %i\n10: %i\n", ue,
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[6],
+								dice_results[7], dice_results[8],
+								dice_results[9], dice_results[0]);
+			#else
+			printf(
+								"Würfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n7: %i\n8: %i\n9: %i\n10: %i\n",
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[6],
+								dice_results[7], dice_results[8],
+								dice_results[9], dice_results[0]);
+			#endif
+
 			printf("Ergebnis: %i\n", result);
 			break;
 		case 12:
@@ -220,15 +309,26 @@ int main(int argc, char** argv) {
 				dice_results[act]++;
 				result += act;
 			}
-
+			#ifdef WINDOWS
 			printf(
-					"Wuerfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n7: %i\n8: %i\n9: %i\n10: %i\n11: %i\n12: %i\n",
-					dice_results[1], dice_results[2],
-					dice_results[3], dice_results[4],
-					dice_results[5], dice_results[6],
-					dice_results[7], dice_results[8],
-					dice_results[9], dice_results[10],
-					dice_results[11], dice_results[0]);
+								"Würfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n7: %i\n8: %i\n9: %i\n10: %i\n11: %i\n12: %i\n",
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[6],
+								dice_results[7], dice_results[8],
+								dice_results[9], dice_results[10],
+								dice_results[11], dice_results[0]);
+			#else
+				printf(
+								"W%crfel:\n1: %i\n2: %i\n3: %i\n4: %i\n5: %i\n6: %i\n7: %i\n8: %i\n9: %i\n10: %i\n11: %i\n12: %i\n", ue,
+								dice_results[1], dice_results[2],
+								dice_results[3], dice_results[4],
+								dice_results[5], dice_results[6],
+								dice_results[7], dice_results[8],
+								dice_results[9], dice_results[10],
+								dice_results[11], dice_results[0]);
+			#endif
+
 			printf("Ergebnis: %i\n", result);
 			break;
 		case 20:
