@@ -62,7 +62,10 @@ int main(int argc, char** argv) {
 				i++;
 			}
 
-			colored_dices[0]->count;
+			for (int ii = 0; ii < i; ii++ ) {
+				roll_colored_dice(colored_dices[ii]);
+				print_result(colored_dices[ii]);
+			}
 
 
 
