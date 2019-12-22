@@ -26,19 +26,20 @@ int main(int argc, char** argv) {
 	unsigned int i;
 	unsigned int act;
 	unsigned int result;
+	unsigned int breakup = 0;
 	#ifdef WINDOWS
 		printf("Willkommen zum W%crfeln!\n", ue);
 	#else
 		printf("Willkommen zum Würfeln!\n");
 	#endif
 
-
+	srand(time(NULL));
 
 
 	while (1) {
+		breakup = 0;
 		result = 0;
 		printf(">");
-		srand(time(NULL));
 		scanf("%9s", dice_type);
 
 		if (dice_type[0] == 'e' || dice_type[0] == 'E') {
@@ -66,49 +67,62 @@ int main(int argc, char** argv) {
 
 			int i = 0;
 			while (color[i] != '\0') {
+				if ((color[i] == 's' || color[i] == 'S') || (color[i] == 'w' || color[i] == 'W') || (color[i] == 'g' || color[i] == 'G') || (color[i] == 'r' || color[i] == 'R')) {
+					//Everything is ok
+				} else {
+					printf("Abbruch\n");
+					printf("Unpassender Buchstabe\n");
+					breakup = 1;
+					fflush(stdin);
+					break;
+				}
+				i++;
+			}
 
+			if (breakup) {
+				continue;
+			}
+
+			i = 0;
+
+			while (color[i] != '\0') {
 				if (color[i] == 's' || color[i] == 'S') {
-					#ifdef WINDOWS
+				#ifdef WINDOWS
 					printf("Wie viele schwarze W%crfel:", ue);
-					#else
+				#else
 					printf("Wie viele schwarze Würfel:");
-					#endif
-
+				#endif
 				} else if (color[i] == 'w' || color[i] == 'W') {
 				#ifdef WINDOWS
 					printf("Wie viele weiße W%crfel:", ue);
 				#else
 					printf("Wie viele weiße Würfel:");
 				#endif
-
 				} else if (color[i] == 'g' || color[i] == 'G') {
 				#ifdef WINDOWS
 					printf("Wie viele gr%cne W%crfel:", ue, ue);
 				#else
 					printf("Wie viele grüne Würfel:");
 				#endif
-
 				} else if (color[i] == 'r' || color[i] == 'R') {
 				#ifdef WINDOWS
-					printf("Wie viele rose W%crfel:", ue);
+					printf("Wie viele rosa W%crfel:", ue);
 				#else
-					printf("Wie viele rose Würfel:");
+					printf("Wie viele rosa Würfel:");
 				#endif
-
 				}
 
 				scanf("%u", &menge);
 				colored_dices[i] = create_colored_dice(&color[i], menge);
 				i++;
 			}
+
 			printf("\n----------------------------------\n\n");
 			for (int ii = 0; ii < i; ii++ ) {
 				roll_colored_dice(colored_dices[ii]);
 				print_result(colored_dices[ii]);
 			}
-
 			continue;
-
 		}
 
 
